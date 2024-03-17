@@ -7,6 +7,8 @@ def busca(nome):
 def calcula_ocorrencias(nome, tipoOperacao):
     conteudo = busca(nome)
     response = conteudo[0].get("res", [])
+    if response.isEmpty():
+        return "Digite um nome valido!"
     return achaMetodo(response, tipoOperacao)
 
 def achaMetodo(response, tipoOperacao):
