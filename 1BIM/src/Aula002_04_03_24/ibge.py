@@ -12,9 +12,8 @@ def calcula_ocorrencias(nome, tipoOperacao):
     return achaMetodo(response, tipoOperacao)
 
 def achaMetodo(response, tipoOperacao):
-    print(response)
+    print(response[1])
     listaFrequencia = [valor['frequencia'] for valor in response]
-    listaPeriodo = [periodo['periodo'] for periodo in response]
     
     if tipoOperacao == "sum":
         print("caiu 1")
@@ -22,9 +21,8 @@ def achaMetodo(response, tipoOperacao):
     
     elif tipoOperacao == "min":
         print("caiu 2")
-        print(listaPeriodo[listaFrequencia.index(min(listaFrequencia))])
-        return [min(listaFrequencia), listaPeriodo[listaFrequencia.index(min(listaFrequencia))]]
+        return response[listaFrequencia.index(min(listaFrequencia))]
     
     else:
         print("caiu 3")
-        return [max(listaFrequencia), listaPeriodo[listaFrequencia.index(max(listaFrequencia))]]
+        return response[listaFrequencia.index(max(listaFrequencia))]

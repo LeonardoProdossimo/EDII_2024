@@ -23,8 +23,8 @@ def menor():
         min = i.calcula_ocorrencias(nome, "min")
         return{
             "nome_procurado": nome,
-            "periodo": min[1].replace("[",""),
-            "menor_ocorrencia": min[0]
+            "periodo": min["periodo"].replace("[",""),
+            "menor_ocorrencia": min["frequencia"]
         }
     except Exception as e:
         return "Falha: "+str(e)
@@ -36,8 +36,8 @@ def maior():
         max = i.calcula_ocorrencias(nome, "max")
         return{
             "nome_procurado": nome,
-            "periodo": max[1].replace("[",""),
-            "maior_ocorrencia": max[0]
+            "periodo": max["periodo"].replace("[",""),
+            "maior_ocorrencia": max["frequencia"]
         }
     except Exception as e:
         return "Falha: "+str(e)
