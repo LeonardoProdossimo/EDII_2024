@@ -37,7 +37,7 @@ def maior():
         return{
             "nome_procurado": nome,
             "periodo": max[1].replace("[",""),
-            "menor_ocorrencia": max[0]
+            "maior_ocorrencia": max[0]
         }
     except Exception as e:
         return "Falha: "+str(e)

@@ -6,6 +6,8 @@ def busca(nome):
 
 def calcula_ocorrencias(nome, tipoOperacao):
     conteudo = busca(nome)
+    if(conteudo == []):
+        return ["Nada encontrado", "Nada encontrado"]
     response = conteudo[0].get("res", [])
     return achaMetodo(response, tipoOperacao)
 
