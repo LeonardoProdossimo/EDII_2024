@@ -42,5 +42,14 @@ def maior():
     except Exception as e:
         return "Falha: "+str(e)
 
+@app.route("/ordena_frequencia")
+def ordenar():
+    try:
+        nome = request.args.get("nome")
+        ordenar = i.calcula_ocorrencias(nome, "ordenar")
+        return ordenar
+    except Exception as e:
+        return "Falha: "+str(e)
+
 if __name__ == "__main__":
     app.run()
