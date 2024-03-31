@@ -3,7 +3,6 @@ import ibge as i
 
 app = Flask(__name__)
 
-
 @app.route("/busca_nome")
 def busca_nome():
     try:
@@ -42,12 +41,21 @@ def maior():
     except Exception as e:
         return "Falha: "+str(e)
 
-@app.route("/ordena_frequencia")
-def ordenar():
+@app.route("/selection_sort")
+def selection_sort():
     try:
         nome = request.args.get("nome")
-        ordenar = i.calcula_ocorrencias(nome, "ordenar")
-        return ordenar
+        selection_sort = i.calcula_ocorrencias(nome, "selection_sort")
+        return selection_sort
+    except Exception as e:
+        return "Falha: "+str(e)
+
+@app.route("/bubble_sort")
+def bubble_sort():
+    try:
+        nome = request.args.get("nome")
+        bubble_sort = i.calcula_ocorrencias(nome, "bubble_sort")
+        return bubble_sort
     except Exception as e:
         return "Falha: "+str(e)
 

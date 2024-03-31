@@ -28,7 +28,7 @@ def achaMetodo(response, tipoOperacao):
         print("caiu 3")
         return response[listaFrequencia.index(max(listaFrequencia))]
     
-    else: 
+    elif tipoOperacao == "selection_sort": 
         print("caiu 4")
         for i in range(len(response)-1):
             menor = i
@@ -38,3 +38,13 @@ def achaMetodo(response, tipoOperacao):
             if(menor != i):
                 response[i], response[menor] = response[menor], response[i]
         return response
+    else:
+        i = len(response)-1
+        while i > 0:
+            for i in range(i):
+                if response[i]["frequencia"] > response[i+1]["frequencia"]:
+                    response[i], response[i+1] = response[i+1], response[i]
+            i -= 1
+        return response
+
+    
