@@ -59,5 +59,14 @@ def bubble_sort():
     except Exception as e:
         return "Falha: "+str(e)
 
+@app.route("/merge_sort")
+def bubble_sort():
+    try:
+        nome = request.args.get("nome")
+        merge_sort = i.calcula_ocorrencias(nome, "merge_sort")
+        return merge_sort
+    except Exception as e:
+        return "Falha: "+str(e)
+
 if __name__ == "__main__":
     app.run()
