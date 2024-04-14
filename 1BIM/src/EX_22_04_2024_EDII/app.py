@@ -3,17 +3,10 @@ import funcoes as f
 
 app = Flask(__name__)
 
-@app.route("/selection_sort")
-def todas():
+@app.route("/")
+def inicia():
     try:
-         return f.pesquisa("selection")
-    except Exception as e:
-        return "Falha: "+str(e)
-
-@app.route("/quick_sort")
-def todas():
-    try:
-         return f.pesquisa("quick")
+         return f.pesquisa()
     except Exception as e:
         return "Falha: "+str(e)
 
