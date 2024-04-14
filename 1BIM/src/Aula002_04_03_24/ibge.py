@@ -37,6 +37,7 @@ def achaMetodo(response, tipoOperacao):
                     menor = j
             if(menor != i):
                 response[i], response[menor] = response[menor], response[i]
+                
     elif tipoOperacao == "bubble_sort":
         i = len(response)-1
         while i > 0:

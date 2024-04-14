@@ -23,6 +23,7 @@ def separaInfoEmLista(conteudo):
     for i in range(len(conteudo)):
         cidades.append(unidecode.unidecode(conteudo[i]["municipio"]["nome"]))
 
+#exemplo para facilitar o teste de corretude
     # cidades = [
     # "João", "Maria", "Pedro", "Ana", "José", "Carlos", "Luiza", "Paula", "Fernando",
     # "João", "Maria", "Pedro", "Ana", "José", "Carlos", "Luiza", "Paula", "Fernando",
@@ -33,22 +34,40 @@ def separaInfoEmLista(conteudo):
     # "Márcia", "Nelson", "Olivia", "Pablo", "Raquel", "Sérgio", "Talita", "Umberto",
     # "Márcia", "Nelson", "Olivia", "Pablo", "Raquel", "Sérgio", "Talita", "Umberto",
     # "Valentina", "Wagner", "Xavier", "Yasmin", "Zuleide", "Alice", "Breno", "Clara",
-    # "Davi", "Eloá", "Fernanda", "Giovanni", "Heloísa", "Ícaro", "Júlia", "Kauã",
+    # "Davi", "Eloá", "Fernanda", "Giovanni", "Heloísa", "Icaro", "Júlia", "Kauã",
     # "Larissa", "Miguel", "Natasha", "Otávio", "Priscila", "Quiteria", "Rodrigo", "Sara",
-    # "Thiago", "Úrsula", "Vitória", "William", "Xandão", "Yago", "Zara", "Adriano",
-    # "Bianca", "Caio", "Diana", "Érica", "Felícia", "Guilherme", "Hérica", "Igor",
+    # "Thiago", "Ursula", "Vitória", "William", "Xandão Cabeça de Ovo", "Lula Ladrão", "Yago", "Zara", "Adriano",
+    # "Bianca", "Caio", "Diana", "Erica", "Felícia", "Guilherme", "Hérica", "Igor",
     # "Jéssica", "Kaique", "Lívia", "Matheus", "Nádia", "Otto", "Pâmela", "Quintino",
     # "Rita", "Sandro", "Tábata", "Ulisses", "Vanessa", "Wesley", "Xuxa", "Yuri", "Zélia"]
-
 
     return organiza(cidades)
 
 def organiza(lista):
+    insertion(deepcopy(lista))
     selection(deepcopy(lista))
     bubble(deepcopy(lista))
     merge(deepcopy(lista))
     quick(deepcopy(lista))
     return listaResponse
+
+#bloco do insertion sort
+def insertion(lista):
+    print(lista)
+    print()
+    comp = 0
+    inicio = t.time()
+    for i in range(1, len(lista)):
+        chave = lista[i]
+        j = i - 1
+        while j >= 0 and lista[j] > chave:
+            lista[j + 1] = lista[j]
+            j -= 1
+            comp += 1
+        lista[j + 1] = chave
+    print(lista)
+    fim = t.time()
+    listaResponse.append(["Insertion sort", f"Tempo de exe. {(fim-inicio):.5f} seg", f"Num. Comparacoes: {comp}"])
 
 #bloco do selection sort
 def selection(lista):
