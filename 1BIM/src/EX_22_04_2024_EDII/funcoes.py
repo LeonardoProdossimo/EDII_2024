@@ -12,6 +12,7 @@ def busca():
     return req.json()
 
 def pesquisa():
+    listaResponse.clear()
     conteudo = busca()
     if(conteudo == []):
         return ["Nada encontrado", "Nada encontrado"]
@@ -21,9 +22,8 @@ def separaInfoEmLista(conteudo):
     cidades = []
 
     for i in range(len(conteudo)):
-        cidades.append(unidecode.unidecode(conteudo[i]["municipio"]["nome"]))
+        cidades.append(unidecode.unidecode(conteudo[i]["nome"]))
 
-#exemplo para facilitar o teste de corretude
     # cidades = [
     # "João", "Maria", "Pedro", "Ana", "José", "Carlos", "Luiza", "Paula", "Fernando",
     # "João", "Maria", "Pedro", "Ana", "José", "Carlos", "Luiza", "Paula", "Fernando",
@@ -40,7 +40,6 @@ def separaInfoEmLista(conteudo):
     # "Bianca", "Caio", "Diana", "Erica", "Felícia", "Guilherme", "Hérica", "Igor",
     # "Jéssica", "Kaique", "Lívia", "Matheus", "Nádia", "Otto", "Pâmela", "Quintino",
     # "Rita", "Sandro", "Tábata", "Ulisses", "Vanessa", "Wesley", "Xuxa", "Yuri", "Zélia"]
-
     return organiza(cidades)
 
 def organiza(lista):
@@ -53,8 +52,7 @@ def organiza(lista):
 
 #bloco do insertion sort
 def insertion(lista):
-    print(lista)
-    print()
+    # print(lista)
     comp = 0
     inicio = t.time()
     for i in range(1, len(lista)):
@@ -65,9 +63,9 @@ def insertion(lista):
             j -= 1
             comp += 1
         lista[j + 1] = chave
-    print(lista)
+    # print(lista)
     fim = t.time()
-    listaResponse.append(["Insertion sort", f"Tempo de exe. {(fim-inicio):.5f} seg", f"Num. Comparacoes: {comp}"])
+    listaResponse.append(["Insertion sort", f"Tempo de exe. {(fim-inicio)} seg", f"Num. Comparacoes: {comp}"])
 
 #bloco do selection sort
 def selection(lista):
@@ -83,7 +81,7 @@ def selection(lista):
             lista[i], lista[menor] = lista[menor], lista[i]
     fim = t.time()
    # print(lista)
-    listaResponse.append(["Selection sort", f"Tempo de exe. {(fim-inicio):.5f} seg", f"Num. Comparacoes: {comp}"])
+    listaResponse.append(["Selection sort", f"Tempo de exe. {(fim-inicio)} seg", f"Num. Comparacoes: {comp}"])
 
 
 #bloco do bubble sort
@@ -99,7 +97,7 @@ def bubble(lista):
         j -= 1
     fim = t.time()
     # print(lista)
-    listaResponse.append(["Bubble sort", f"Tempo de exe. {(fim-inicio):.5f} seg", f"Num. Comparacoes: {comp}"])
+    listaResponse.append(["Bubble sort", f"Tempo de exe. {(fim-inicio)} seg", f"Num. Comparacoes: {comp}"])
 
 
 #bloco do merge sort
@@ -128,7 +126,7 @@ def merge(lista):
     tempoInicial = t.time()
     mergeRecursivo(0, len(lista), lista)
     tempoFinal = t.time()
-    listaResponse.append(["Merge sort", f"Tempo de exe: {(tempoFinal-tempoInicial):.5f} seg", f"Num. Comparacoes: {auxMergeComp[0]}"])
+    listaResponse.append(["Merge sort", f"Tempo de exe: {(tempoFinal-tempoInicial)} seg", f"Num. Comparacoes: {auxMergeComp[0]}"])
 
 def mergeRecursivo(inicio, fim, lista):
     if inicio < fim-1:
@@ -143,7 +141,7 @@ def quick(lista):
     inicio = t.time()
     quickSortOrdena(lista, 0, len(lista)-1)
     fim = t.time()
-    listaResponse.append(["Quick sort", f"Tempo de exe: {(fim-inicio):.5f} seg", f"Num. Comparacoes: {auxQuickComp[0]}"])
+    listaResponse.append(["Quick sort", f"Tempo de exe: {(fim-inicio)} seg", f"Num. Comparacoes: {auxQuickComp[0]}"])
 
 def quickSortOrdena(lista, esq, dir):
     if esq < dir:
