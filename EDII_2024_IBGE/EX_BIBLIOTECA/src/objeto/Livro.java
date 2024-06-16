@@ -2,24 +2,29 @@ package objeto;
 
 
 public class Livro {
-	private static int id = 0;
+	public static String INSERT = "INSERT";
+	public static String SELECT = "SELECT";
+	public static String UPDATE = "UPDATE";
+	public static String DELETE = "DELETE";
+	
+	private int idlivro;
 	private String titulo;
 	private String autor;
 	private String anoPublicacao;
 	
 	public Livro(){
-		setId(id += 1);
+		idlivro = 0;
 		titulo = "";
 		autor = "";
 		anoPublicacao = "";
 	}
 
-	public int getId() {
-		return id;
+	public int getIdlivro() {
+		return idlivro;
 	}
 
-	public static void setId(int id) {
-		Livro.id = id;
+	public void setIdlivro(int idlivro) {
+		this.idlivro = idlivro;
 	}
 
 	public String getTitulo() {
@@ -45,12 +50,5 @@ public class Livro {
 
 	public void setAnoPublicacao(String anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
-	}
-	
-	public String toString() {
-		return "Id: "+this.getId() 
-		+ " |Titulo: "+this.getTitulo()
-		+" |Autor: "+this.getAutor()
-		+" |Ano: "+this.getAnoPublicacao();
 	}
 }

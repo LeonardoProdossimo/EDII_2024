@@ -6,4 +6,5 @@
  *
  */
 module EX_BIBLIOTECA {
+	requires java.sql;
 }
