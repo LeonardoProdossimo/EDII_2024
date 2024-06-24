@@ -19,15 +19,18 @@ public class Main {
 				menuCrudUsuario();
 				op = sc.next();
 				while (true) {
-					if(op.equalsIgnoreCase("1")) {
-						preencheUsuario();
-					}else if(op.equalsIgnoreCase("2")) {
-						achaCodigoUsuario(op);
-					}else if(op.equalsIgnoreCase("3")) {
-						achaCodigoUsuario(op);
-					}else if(op.equalsIgnoreCase("4")) {
-						achaCodigoUsuario(op);
-					}else if(op.equalsIgnoreCase("5")) {
+					if(op.equalsIgnoreCase("1") 
+							|| op.equalsIgnoreCase("4")) {
+						
+						preencheUsuario(new Usuario(), op);
+						
+					}else if(op.equalsIgnoreCase("2") 
+							|| op.equalsIgnoreCase("3") 
+							|| op.equalsIgnoreCase("5")) {
+						
+						achaCodigoUsuario(new Usuario(), op);
+						
+					}else if(op.equalsIgnoreCase("0")) {
 						System.out.println("->->->->-> Voltando <-<-<-<-<-");
 						break;
 					}else {
@@ -39,15 +42,18 @@ public class Main {
 				menuCrudLivro();
 				op = sc.next();
 				while (true) {
-					if(op.equalsIgnoreCase("1")) {
-						preencheLivro();
-					}else if(op.equalsIgnoreCase("2")) {
-						achaCodigoLivro(op);
-					}else if(op.equalsIgnoreCase("3")) {
-						achaCodigoLivro(op);
-					}else if(op.equalsIgnoreCase("4")) {
-						achaCodigoLivro(op);
-					}else if(op.equalsIgnoreCase("5")) {
+					if(op.equalsIgnoreCase("1") 
+							|| op.equalsIgnoreCase("4")) {
+						
+						preencheLivro(new Livro(), op);
+						
+					}else if(op.equalsIgnoreCase("2") 
+							|| op.equalsIgnoreCase("3") 
+							|| op.equalsIgnoreCase("5")) {
+						
+						achaCodigoLivro(new Livro(), op);
+						
+					}else if(op.equalsIgnoreCase("0")) {
 						System.out.println("->->->->-> Voltando <-<-<-<-<-");
 					}else {
 						System.out.println("->->->->-> OPÇÃO INVÁLIDA! <-<-<-<-<-");
@@ -63,10 +69,10 @@ public class Main {
 		}
 	}
 	
-	private static void achaCodigoLivro(String op) {
+	private static void achaCodigoLivro(Livro livro, String op) {
 		int cod = 0;
 		try {
-			if(!op.equalsIgnoreCase("4")) {
+			if(!op.equalsIgnoreCase("5")) {
 				System.out.print("Digite o código do livro ->> ");
 				cod = sc.nextInt();
 			}
@@ -74,23 +80,20 @@ public class Main {
 			System.out.print("Código inválido!");
 			return;
 		}
-		Livro livro = new Livro();
-		if(op.equalsIgnoreCase("2")) {
-			livro.setIdlivro(cod);
+		livro.setIdlivro(cod);
+		if(op.equalsIgnoreCase("2") || op.equalsIgnoreCase("5")) {
 			bib.buscaLivro(livro);
 		}else if(op.equalsIgnoreCase("3")) {
-			livro.setIdlivro(cod);
 			bib.removeLivro(livro);
 		}else if(op.equalsIgnoreCase("4")) {
-			livro.setIdlivro(cod);
-			bib.buscaLivro(livro);
+			bib.alterarLivro(livro);
 		}
 	}
 	
-	private static void achaCodigoUsuario(String op) {
+	private static void achaCodigoUsuario(Usuario usuario, String op) {
 		int cod = 0;
 		try {
-			if(!op.equalsIgnoreCase("4")) {
+			if(!op.equalsIgnoreCase("5")) {
 				System.out.print("Digite o código do usuário ->> ");
 				cod = sc.nextInt();
 			}
@@ -98,16 +101,13 @@ public class Main {
 			System.out.print("Código inválido!");
 			return;
 		}
-		Usuario usuario = new Usuario();
-		if(op.equalsIgnoreCase("2")) {
-			usuario.setIdusuario(cod);
+		usuario.setIdusuario(cod);
+		if(op.equalsIgnoreCase("2") || op.equalsIgnoreCase("5")) {
 			usuario.buscaUsuario(usuario);
 		}else if(op.equalsIgnoreCase("3")) {
-			usuario.setIdusuario(cod);
 			usuario.removeUsuario(usuario);
 		}else if(op.equalsIgnoreCase("4")) {
-			usuario.setIdusuario(cod);
-			usuario.buscaUsuario(usuario);
+			usuario.alterarUsuario(usuario);
 		}
 	}
 	
@@ -124,8 +124,9 @@ public class Main {
 		System.out.println("1 ->> Inserir Usuário");
 		System.out.println("2 ->> Buscar Usuário");
 		System.out.println("3 ->> Remover Usuário");
-		System.out.println("4 ->> Listar Usuários");
-		System.out.println("5 ->> Voltar");
+		System.out.println("4 ->> Alterar Usuário");
+		System.out.println("5 ->> Listar Usuários");
+		System.out.println("0 ->> Voltar");
 		System.out.print("Escolha uma opção ->> ");
 	}
 	
@@ -134,28 +135,36 @@ public class Main {
 		System.out.println("1 ->> Inserir Livro");
 		System.out.println("2 ->> Buscar Livro");
 		System.out.println("3 ->> Remover Livro");
-		System.out.println("4 ->> Listar Livro");
-		System.out.println("5 ->> Voltar");
+		System.out.println("4 ->> Alterar Livro");
+		System.out.println("5 ->> Listar Livro");
+		System.out.println("0 ->> Voltar");
 		System.out.print("Escolha uma opção ->> ");
 	}
 	
-	private static void preencheLivro() {
-		Livro livro = new Livro();
-		System.out.print("Digite o titulo do livro ->> ");
-		livro.setTitulo(sc.next());
-		System.out.print("Digite o autor do livro ->> ");
-		livro.setAutor(sc.next());
-		System.out.print("Digite o ano do livro ->> ");
-		livro.setAnoPublicacao(sc.next());
-		bib.insereLivro(livro);
+	private static void preencheLivro(Livro livro, String op) {
+			System.out.print("Digite o titulo do livro ->> ");
+			livro.setTitulo(sc.next());
+			System.out.print("Digite o autor do livro ->> ");
+			livro.setAutor(sc.next());
+			System.out.print("Digite o ano do livro ->> ");
+			livro.setAnoPublicacao(sc.next());
+		if(op.equalsIgnoreCase("4")) {
+			achaCodigoLivro(livro, op);
+		}else {
+			bib.insereLivro(livro);
+		}
 	}
 	
-	private static void preencheUsuario() {
-		Usuario usuario = new Usuario();
+	private static void preencheUsuario(Usuario usuario, String op) {
 		System.out.print("Digite o nome do usuário ->> ");
 		usuario.setNome(sc.next());
 		System.out.print("Digite o e-mail do usuário ->> ");
 		usuario.setEmail(sc.next());
-		usuario.insereUsuario(usuario);
+		
+		if(op.equalsIgnoreCase("4")) {
+			achaCodigoUsuario(usuario, op);
+		}else {
+			usuario.insereUsuario(usuario);
+		}
 	}
 }

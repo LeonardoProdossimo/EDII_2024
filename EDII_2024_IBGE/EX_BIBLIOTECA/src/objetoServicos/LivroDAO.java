@@ -17,9 +17,9 @@ public class LivroDAO {
 		if(metodo.equals(Livro.INSERT)) {
 			insereLivro();
 		}else if(metodo.equals(Livro.SELECT)) {
-			buscaLivro(livro.getIdlivro());
+			buscaLivro();
 		}else if(metodo.equals(Livro.UPDATE)) {
-			
+			alterarLivro();
 		}else if(metodo.equals(Livro.DELETE)) {
 			removeLivro();
 		}
@@ -34,15 +34,14 @@ public class LivroDAO {
 		param[1] = livro.getAutor();
 		param[2] = livro.getAnoPublicacao();
 
-		String retorno = con.executaInsert(sql, param);
-		if(retorno.equalsIgnoreCase("OK")) {
+		if(!con.executaUpdate(sql, param)) {
 			System.out.println("->->->->-> Inserido com sucesso! <-<-<-<-<-");
 		}else {
 			System.out.println("->->->->-> Falha ao inserir registro! <-<-<-<-<-");
 		}
 	}
 	
-	private void buscaLivro(int id) {
+	private void buscaLivro() {
 		try {
 			String sql = "SELECT idlivro, titulo, autor, ano FROM livro ";
 			if(livro.getIdlivro() > 0){
@@ -72,11 +71,25 @@ public class LivroDAO {
 		param = new String[1];
 		param[0] = String.valueOf(livro.getIdlivro());
 		
-		String retorno = con.executaDelete(sql, param);
-		if(retorno.equalsIgnoreCase("OK")) {
+		if(!con.executaUpdate(sql, param)) {
 			System.out.println("->->->->-> Deletado com sucesso! <-<-<-<-<-");
 		}else {
 			System.out.println("->->->->-> Falha ao deletar registro! <-<-<-<-<-");
+		}
+	}
+	
+	private void alterarLivro() {
+		String sql = "UPDATE livro SET titulo = ?, autor = ?, ano = ? WHERE idlivro = ? ;";
+		param = new String[4];
+		param[0] = String.valueOf(livro.getTitulo());
+		param[1] = String.valueOf(livro.getAutor());
+		param[2] = String.valueOf(livro.getAnoPublicacao());
+		param[3] = String.valueOf(livro.getIdlivro());
+		
+		if(!con.executaUpdate(sql, param)) {
+			System.out.println("->->->->-> Alterado com sucesso! <-<-<-<-<-");
+		}else {
+			System.out.println("->->->->-> Falha ao alterar registro! <-<-<-<-<-");
 		}
 	}
 }

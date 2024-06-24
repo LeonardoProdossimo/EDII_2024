@@ -30,30 +30,17 @@ public class Conexao {
 		}
 	}
 	
-	public String executaInsert(String sql, String[] param) {
+	public boolean executaUpdate(String sql, String[] param) {
 	    try {
 	        p = getCon().prepareStatement(sql);
 	        for (int i = 0; i < param.length; i++) {
 	        	p.setString(i+1, param[i]);
 	        }
-	        p.executeUpdate();
+	        return p.execute();
 	    } catch (SQLException e) {
-	        return "ERRO: " + e.getMessage();
+	    	e.printStackTrace();
+	        return false;
 	    }
-		return "OK";
-	}
-	
-	public String executaDelete(String sql, String[] param) {
-	    try {
-	        p = getCon().prepareStatement(sql);
-	        for (int i = 0; i < param.length; i++) {
-	        	p.setString(i+1, param[i]);
-	        }
-	        p.executeUpdate();
-	    } catch (SQLException e) {
-	        return "ERRO: " + e.getMessage();
-	    }
-		return "OK";
 	}
 	
 	public ResultSet executaQuery(String sql, String[] param) {

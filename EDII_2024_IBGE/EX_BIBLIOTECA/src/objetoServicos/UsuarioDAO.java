@@ -17,9 +17,9 @@ public class UsuarioDAO {
 		if(metodo.equals(Usuario.INSERT)) {
 			insereUsuario();
 		}else if(metodo.equals(Usuario.SELECT)) {
-			buscaUsuario(usuario.getIdusuario());
+			buscaUsuario();
 		}else if(metodo.equals(Usuario.UPDATE)) {
-			
+			alterarUsuario();
 		}else if(metodo.equals(Usuario.DELETE)) {
 			removeUsuario();
 		}
@@ -33,15 +33,14 @@ public class UsuarioDAO {
 		param[0] = usuario.getNome();
 		param[1] = usuario.getEmail();;
 		
-		String retorno = con.executaInsert(sql, param);
-		if(retorno.equalsIgnoreCase("OK")) {
+		if(!con.executaUpdate(sql, param)) {
 			System.out.println("->->->->-> Inserido com sucesso! <-<-<-<-<-");
 		}else {
 			System.out.println("->->->->-> Falha ao inserir registro! <-<-<-<-<-");
 		}
 	}
 	
-	public void buscaUsuario(int id) {
+	public void buscaUsuario() {
 		try {
 			String sql = "SELECT idusuario, nome, email FROM usuario ";
 			if(usuario.getIdusuario() > 0){
@@ -70,11 +69,24 @@ public class UsuarioDAO {
 		param = new String[1];
 		param[0] = String.valueOf(usuario.getIdusuario());
 		
-		String retorno = con.executaDelete(sql, param);
-		if(retorno.equalsIgnoreCase("OK")) {
+		if(!con.executaUpdate(sql, param)) {
 			System.out.println("->->->->-> Deletado com sucesso! <-<-<-<-<-");
 		}else {
 			System.out.println("->->->->-> Falha ao deletar registro! <-<-<-<-<-");
+		}
+	}
+	
+	private void alterarUsuario() {
+		String sql = "UPDATE usuario SET nome = ?, email = ? WHERE idusuario = ? ;";
+		param = new String[3];
+		param[0] = String.valueOf(usuario.getNome());
+		param[1] = String.valueOf(usuario.getEmail());
+		param[2] = String.valueOf(usuario.getIdusuario());
+		
+		if(!con.executaUpdate(sql, param)) {
+			System.out.println("->->->->-> Alterado com sucesso! <-<-<-<-<-");
+		}else {
+			System.out.println("->->->->-> Falha ao alterar registro! <-<-<-<-<-");
 		}
 	}
 }

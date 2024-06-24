@@ -20,5 +20,9 @@ public class Biblioteca {
 	public void removeLivro(Livro livro) {
 		new LivroDAO(livro, Livro.DELETE);
 	}
+	
+	public void alterarLivro(Livro livro) {
+		new LivroDAO(livro, Livro.UPDATE);
+	}
 }
 

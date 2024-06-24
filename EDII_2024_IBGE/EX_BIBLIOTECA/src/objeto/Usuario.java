@@ -28,6 +28,10 @@ public class Usuario {
 	public void removeUsuario(Usuario usuario) {
 		new UsuarioDAO(usuario, Usuario.DELETE);
 	}
+	
+	public void alterarUsuario(Usuario usuario) {
+		new UsuarioDAO(usuario, Livro.UPDATE);
+	}
 
 	public void listaUsuarios(){
 	}
